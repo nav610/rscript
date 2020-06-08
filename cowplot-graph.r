@@ -1,0 +1,22 @@
+library("ggplot2") 
+library("cowplot") 
+
+locB <- read.csv("score_local_dockB.csv") 
+locC <- read.csv("score_local_dockC.csv")
+locD <- read.csv("score_local_dockD.csv")
+locE <- read.csv("score_local_dockE.csv")
+locF <- read.csv("score_local_dockF.csv")
+locG <- read.csv("score_local_dockG.csv")
+
+head(locB) 
+head(locG)
+p1 <- ggplot(data=locB, aes(x=rms,y=I_sc)) + geom_point() + xlim(0,50) + ylim(-40,0) 
+p2 <- ggplot(data=locC, aes(x=rms,y=I_sc)) + geom_point() + xlim(0,50) + ylim(-40,0)
+p3 <- ggplot(data=locD, aes(x=rms,y=I_sc)) + geom_point() + xlim(0,50) + ylim(-40,0)
+p4 <- ggplot(data=locE, aes(x=rms,y=I_sc)) + geom_point() + xlim(0,50) + ylim(-40,0)
+p5 <- ggplot(data=locF, aes(x=rms,y=I_sc)) + geom_point() + xlim(0,50) + ylim(-40,0)
+p6 <- ggplot(data=locG, aes(x=rms,y=I_sc)) + geom_point() + xlim(0,50) + ylim(-40,0)
+
+#plot_grid(p1,p2,p3,p4,p6)
+cow <- plot_grid(p1,p2,p3,p4,p5,p6, labels = c('B','C','D','E','F','G'), label_size=12) 
+ggsave("dock-scores.jpg",cow)
